@@ -9,9 +9,9 @@
 
 ### Run on Google cloud run
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+[//]: # ([![Run on Google Cloud]&#40;https://deploy.cloud.run/button.svg&#41;]&#40;https://deploy.cloud.run&#41;)
 
-[//]: # ([![Run on Google Cloud]&#40;https://storage.googleapis.com/cloudrun/button.svg&#41;]&#40;https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/ZAKTECH-LTD/gocome-backend.git&#41;)
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/ZAKTECH-LTD/gocome-backend.git)
 
 
 ## About Laravel
