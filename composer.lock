@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ce3caab39a39f8ed37cb0f7ba3e96fb",
+    "content-hash": "91c509199a3e8b018c2d24c11c9ed819",
     "packages": [
         {
             "name": "ahsankhatri/firestore-php",
@@ -11228,22 +11228,28 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v0.0.5",
+            "version": "v1.21.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "d9b0575ece889a35b9741789452c1c7abca5bc2f"
+                "reference": "fd8d04bc546457b504aa2b3c2d541840551f836f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/d9b0575ece889a35b9741789452c1c7abca5bc2f",
-                "reference": "d9b0575ece889a35b9741789452c1c7abca5bc2f",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/fd8d04bc546457b504aa2b3c2d541840551f836f",
+                "reference": "fd8d04bc546457b504aa2b3c2d541840551f836f",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^8.0|^9.0",
-                "illuminate/support": "^8.0|^9.0",
-                "php": "^7.3|^8.0"
+                "illuminate/console": "^8.0|^9.0|^10.0",
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.3|^8.0",
+                "symfony/yaml": "^6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.10"
             },
             "bin": [
                 "bin/sail"
@@ -11283,7 +11289,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2020-12-07T20:58:56+00:00"
+            "time": "2023-03-01T23:07:57+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -12997,6 +13003,80 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v6.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "e8e6a1d59e050525f27a1f530aa9703423cb7f57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e8e6a1d59e050525f27a1f530aa9703423cb7f57",
+                "reference": "e8e6a1d59e050525f27a1f530aa9703423cb7f57",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "conflict": {
+                "symfony/console": "<5.4"
+            },
+            "require-dev": {
+                "symfony/console": "^5.4|^6.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/v6.2.7"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-16T09:57:23+00:00"
         },
         {
             "name": "theanik/laravel-more-command",

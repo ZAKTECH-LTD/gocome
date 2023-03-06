@@ -1,11 +1,71 @@
-version: '3'
+version: "3.8"
 services:
+  # Application
   app:
     build:
-      context: ./
+      context: ./docker/services/app
+      dockerfile: app.dockerfile
+    working_dir: /var/www
     volumes:
-      - .:/var/www
+      - ./:/var/www
+  # Web Server
+  web:
+    build:
+      context: ./docker/services/web
+      dockerfile: web.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
     ports:
-      - "8080:8080"
+      - "80:80"
+  # Database
+  database:
+    # platform: linux/amd64
+    # image: mysql:latest
+    # command: --default-authentication-plugin=mysql_native_password
+    # ------------------------------
+    platform: linux/x86_64
+    image: mysql/mysql-server:8.0.23
+    command: --default-authentication-plugin=mysql_native_password
+    # ------------------------------
+    # image: mariadb:10.5.8
+    # ------------------------------
+    # platform: linux/x86_64
+    # image: mysql:8.0.25
+    volumes:
+      - ./docker/volumes/mysql:/var/lib/mysql
     environment:
-      - APP_ENV=local
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    ports:
+      - "3306:3306"
+  # Database Management
+  pma:
+    image: phpmyadmin:5.1
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${DB_HOST}
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
+      - PMA_PORT=${DB_PORT}
+    depends_on:
+      - "database"
+    ports:
+      - "8888:80"
+  # Caching
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./docker/volumes/redis:/data
+    ports:
+      - "6379:6379"
+  # Mailing Server
+  mailhog:
+    image: mailhog/mailhog:latest
+    logging:
+      driver: "none"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
