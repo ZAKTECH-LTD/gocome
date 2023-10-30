@@ -1,0 +1,68 @@
+version: "3.8"
+services:
+  gocome:
+    restart: unless-stopped
+    platform: linux/x86_64
+    container_name: gocome
+    build:
+      context: .
+      dockerfile: ./local-docker/php/Dockerfile
+    expose:
+      - 9000
+    volumes:
+      - .:/usr/src/app
+      - ./public:/usr/src/app/public
+    # depends_on:
+    #   - gocome_db
+    networks:
+      - app_network
+
+  gocome_nginx:
+    restart: unless-stopped
+    platform: linux/x86_64
+    container_name: gocome_nginx
+    build:
+      context: .
+      dockerfile: ./local-docker/nginx/Dockerfile
+    volumes:
+    - ./public:/usr/src/app/public
+    ports:
+      - 8000:80
+    depends_on:
+      - gocome
+    environment:
+      NGINX_FPM_HOST: gocome
+      NGINX_ROOT: /usr/src/app/public
+    networks:
+      - app_network
+
+  # gocome_db:
+  #   container_name: gocome_db
+  #   restart: unless-stopped
+  #   platform: linux/x86_64
+  #   image: mysql:8.0.20
+  #   volumes:
+  #     - ./storage/db-data:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     MYSQL_DATABASE: gocome
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_USER: admin
+  #     MYSQL_PASSWORD: eneyohwei
+  #   networks:
+  #     - app_network
+
+  # gocome_redis:
+  #   restart: unless-stopped
+  #   platform: linux/x86_64
+  #   container_name: gocome_redis
+  #   image: redis:latest
+  #   ports:
+  #     - 6379:6379
+  #   networks:
+  #     - app_network
+
+networks:
+  app_network:
+    driver: bridge
